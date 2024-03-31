@@ -35,7 +35,7 @@ def arg_init(args):
     args.add_argument("--draw_boxes", type=bool,
                     default=False, help="outline detected target, borderless window")
     args.add_argument("--aim_fov", type=float,
-                    default=3/2, help="aim field of view, radius=width*aim_fov")
+                    default=4/3, help="aim field of view, radius=width*aim_fov")
     args.add_argument("--caps_lock", type=bool,
                     default=False, help="use CAPS_LOCK as LEFT_LOCK")
     # args.add_argument("--mouse_speed", type=float,
@@ -45,7 +45,7 @@ def arg_init(args):
     args.add_argument("--pid", type=bool, default=True, help="use proportional–integral–derivative control")
     args.add_argument("--Kp", type=float, default=0.3, help="Kp")  # proporcional to distance 0.4 nimble 0.1 slack
     args.add_argument("--Ki", type=float, default=0.03, help="Ki")  # integral accumulator 0.04 explosive 0.01 composed
-    args.add_argument("--Kd", type=float, default=0.3, help="Kd")  # derivative absorber 0.4 stiff 0.1 soft
+    args.add_argument("--Kd", type=float, default=0.4, help="Kd")  # derivative absorber 0.4 stiff 0.1 soft
 
     args = args.parse_args(args=[])
     return args
