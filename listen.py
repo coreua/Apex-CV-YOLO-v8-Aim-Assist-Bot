@@ -26,8 +26,7 @@ pre_error = integral = np.array([0., 0.])
 
 
 def listen_init(args):
-    global aim_fov, caps_lock
-    aim_fov = args.aim_fov
+    global caps_lock
     caps_lock = args.caps_lock
 
 
@@ -159,7 +158,7 @@ def PID(args, error):
 
 def move_mouse(args):
     global pos, screen_center, destination, last, width, pre_error, integral
-    global aim_fov, shift_pressed, right_lock, mouse2_pressed, mouse1_pressed
+    global shift_pressed, right_lock, mouse2_pressed, mouse1_pressed
     if detecting:
         if destination[0] == -1:
             if last[0] == -1:
@@ -170,7 +169,7 @@ def move_mouse(args):
         else:
             mouse_vector = (destination - pos) / scale
         norm = np.linalg.norm(mouse_vector)
-        if norm > width*aim_fov: return
+        if norm > width*args.aim_fov: return
         if args.pid:
             move = PID(args, mouse_vector)
             win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(move[0]), int(move[1] / 3))
