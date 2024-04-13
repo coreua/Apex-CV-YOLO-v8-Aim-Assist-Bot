@@ -26,7 +26,7 @@ def arg_init(args):
     args.add_argument("--iou", type=float,
                     default=0.8, help="predict intersection over union")  # 0.8 is recommended
     args.add_argument("--conf", type=float,
-                    default=0.6, help="predict confidence")  # 0.6+ is recommended
+                    default=0.5, help="predict confidence")  # 0.6+ is recommended
     screen_height = win32api.GetSystemMetrics(1)
     args.add_argument("--crop_size", type=float,
                     default=640/screen_height, help="the portion to detect from the screen. 1/3 for 1440P or 1/2 for 1080P, imgsz/screen_height=direct")
@@ -43,9 +43,9 @@ def arg_init(args):
 
     # PID args
     args.add_argument("--pid", type=bool, default=True, help="use proportional–integral–derivative control")
-    args.add_argument("--Kp", type=float, default=0.3, help="Kp")  # proporcional to distance 0.4 nimble 0.1 slack
-    args.add_argument("--Ki", type=float, default=0.03, help="Ki")  # integral accumulator 0.04 explosive 0.01 composed
-    args.add_argument("--Kd", type=float, default=0.4, help="Kd")  # derivative absorber 0.4 stiff 0.1 soft
+    args.add_argument("--Kp", type=float, default=0.35, help="Kp")  # proporcional to distance 0.4 nimble 0.1 slack
+    args.add_argument("--Ki", type=float, default=0.02, help="Ki")  # integral accumulator 0.04 explosive 0.01 composed
+    args.add_argument("--Kd", type=float, default=0.35, help="Kd")  # derivative absorber 0.4 stiff 0.1 soft
 
     args = args.parse_args(args=[])
     return args
