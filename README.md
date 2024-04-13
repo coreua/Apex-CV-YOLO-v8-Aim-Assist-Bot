@@ -146,11 +146,13 @@ pip install -r requirements.txt
 
 ### 2.1 Usage
 
-- Lock your in-game FPS. Give your GPU some slack. It is needed for object detection.
-    - Do not use V-Sync to lock your FPS. V-Sync introduces input lag.
-        - Use NVIDIA Control Panel.
-        - OR
-        - Use RTSS.
+#### ⚠️ **Lock your in-game FPS. Give your GPU some slack. It is needed for object detection.** ⚠️
+- Do not use V-Sync to lock your FPS. V-Sync introduces input lag.
+    - Use NVIDIA Control Panel.
+    - OR
+    - Use RTSS.
+
+
 - Set in-game mouse sensitivity to **3.50**.
     - The PID control (`Kp`, `Ki`, `Kd`) values in `args_.py` come already fine-tuned.
     - If the mouse moves too fast, **EAC will flag your account** and you will be banned on the next ban wave.
