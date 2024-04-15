@@ -14,6 +14,7 @@ mouse1_pressed = False
 mouse2_pressed = False
 left_lock = False  # lock on target when the left mouse button is pressed  # 左键锁, Left, 按鼠标左键时锁
 right_lock = False  # lock when pressing the right mouse button (scoping)  # 右键锁, Right, 按鼠标右键(开镜)时锁
+auto_fire = True
 backforce = 0
 screen_size = np.array([win32api.GetSystemMetrics(0), win32api.GetSystemMetrics(1)])
 screen_center = screen_size / 2
@@ -31,7 +32,7 @@ def listen_init(args):
 
 
 def get_D_L():
-    global caps_lock, left_lock, detecting, listening
+    global detecting, listening, left_lock, caps_lock
     if caps_lock:
         if win32api.GetKeyState(0x14):
             if not left_lock:
@@ -47,7 +48,7 @@ def get_D_L():
 
 
 def listen_k_press(key):
-    global caps_lock, detecting, listening, shift_pressed, left_lock, right_lock
+    global detecting, listening, shift_pressed, left_lock, right_lock, auto_fire, caps_lock
     if key == keyboard.Key.home:
         detecting = False
         listening = False
@@ -68,6 +69,10 @@ def listen_k_press(key):
         detecting = False
         right_lock = not right_lock
         winsound.Beep(900 if right_lock else 500, 200)
+    if key == keyboard.Key.up:
+        detecting = False
+        auto_fire = not auto_fire
+        winsound.Beep(850 if auto_fire else 450, 200)
     if not caps_lock:
         if key == keyboard.KeyCode.from_char('1') or key == keyboard.KeyCode.from_char('2'):
             if not left_lock:
@@ -157,8 +162,8 @@ def PID(args, error):
 
 
 def move_mouse(args):
-    global pos, screen_center, destination, last, width, pre_error, integral
-    global shift_pressed, right_lock, mouse2_pressed, mouse1_pressed
+    global detecting, screen_center, destination, last, width, scale, pre_error, integral, pos
+    global auto_fire, shift_pressed, right_lock, mouse2_pressed, mouse1_pressed
     if detecting:
         if destination[0] == -1:
             if last[0] == -1:
@@ -174,6 +179,7 @@ def move_mouse(args):
             move = PID(args, mouse_vector)
             win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(move[0]), int(move[1] / 3))
             last_mv = last - destination + mouse_vector
+            if not auto_fire: return
             # norm <= width/2  # higher divisor increases precision but limits fire rate
             # abs(move[0]) >= abs(last_mv[0])/2 and move[0]*last_mv[0] >= 0  # ensures tracking
             if ( shift_pressed and not right_lock and mouse2_pressed and not mouse1_pressed  # scope fire
@@ -196,7 +202,7 @@ def move_mouse(args):
 
 # redirect the mouse closer to the nearest box center
 def mouse_redirection(args, boxes):
-    global pos, screen_size, screen_center, destination, last, width
+    global screen_size, screen_center, destination, last, width, pos
     if boxes.shape[0] == 0:
         last = destination
         destination = np.array([-1, -1])

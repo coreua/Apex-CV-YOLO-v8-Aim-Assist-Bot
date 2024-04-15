@@ -95,7 +95,7 @@ if __name__ == "__main__":
             print("fps: ", count / time_per_100frame)
             interval = time_per_100frame / count
             print("interval: ", interval)
-            print("[LEFT_LOCK]" if listen.left_lock else "[         ]", "[\033[30;41mRIGHT_LOCK\033[00m]" if listen.right_lock else "[          ]")
+            print("[LEFT_LOCK]" if listen.left_lock else "[         ]", "[RIGHT_LOCK]" if listen.right_lock else "[          ]", "[\033[30;41mAUTO_FIRE\033[00m]" if listen.auto_fire else "[          ]")
             count = 0
             time_capture_total = 0
 
