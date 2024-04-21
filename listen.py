@@ -14,7 +14,7 @@ mouse1_pressed = False
 mouse2_pressed = False
 left_lock = False  # lock on target when the left mouse button is pressed  # 左键锁, Left, 按鼠标左键时锁
 right_lock = False  # lock when pressing the right mouse button (scoping)  # 右键锁, Right, 按鼠标右键(开镜)时锁
-auto_fire = True
+auto_fire = False
 backforce = 0
 screen_size = np.array([win32api.GetSystemMetrics(0), win32api.GetSystemMetrics(1)])
 screen_center = screen_size / 2
@@ -69,10 +69,10 @@ def listen_k_press(key):
         detecting = False
         right_lock = not right_lock
         winsound.Beep(900 if right_lock else 500, 200)
-    if key == keyboard.Key.up:
-        detecting = False
-        auto_fire = not auto_fire
-        winsound.Beep(850 if auto_fire else 450, 200)
+    # if key == keyboard.Key.up:  # AUTO_FIRE is detected by EAC
+    #     detecting = False
+    #     auto_fire = not auto_fire
+    #     winsound.Beep(850 if auto_fire else 450, 200)
     if not caps_lock:
         if key == keyboard.KeyCode.from_char('1') or key == keyboard.KeyCode.from_char('2'):
             if not left_lock:
