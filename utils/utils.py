@@ -161,7 +161,7 @@ def multiclass_nms(boxes, scores, iou_thr, conf_thr):
     return np.concatenate(final_dets, 0)
 
 
-def preprocess(image, input_size):  # imgsz, size of input images as integer or w,h
+def preprocess(image, input_size):  # imgsz, size of input image as integer [W, H]
     # padded_img = np.zeros((input_size[1], input_size[0], 3), dtype=np.uint8)  # HWC (640x640x3)
     # ratio = min(input_size[0]/image.shape[1], input_size[1]/image.shape[0])  # ratio=min, (padded_img) strech the least or shrink the most
     ratio = max(input_size[0]/image.shape[1], input_size[1]/image.shape[0])  # ratio=max, (cropped_img) strech the most or shrink the least
