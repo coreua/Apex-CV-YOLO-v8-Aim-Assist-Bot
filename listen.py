@@ -184,12 +184,12 @@ def move_mouse(args):
             # abs(move[0]) >= abs(last_mv[0])/2 and move[0]*last_mv[0] >= 0  # ensures tracking
             if ( shift_pressed and not right_lock and mouse2_pressed and not mouse1_pressed  # scope fire
             and norm <= width*2/3 and abs(move[0]) >= abs(last_mv[0])/2 and move[0]*last_mv[0] >= 0 ):
-                mouse.Controller().press(mouse.Button.left)
-                mouse.Controller().release(mouse.Button.left)
+                win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
+                win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
             elif ( ((shift_pressed and not mouse2_pressed) or (right_lock and mouse2_pressed and not mouse1_pressed))  # hip fire
             and norm <= width*3/4 and abs(move[0]) >= abs(last_mv[0])/2 and move[0]*last_mv[0] >= 0 ):
-                mouse.Controller().press(mouse.Button.left)
-                mouse.Controller().release(mouse.Button.left)
+                win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
+                win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
             return
         # if destination not in region
         if norm <= 2 or (destination[0] == screen_center[0] and destination[1] == screen_center[1]): return
