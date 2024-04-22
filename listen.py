@@ -180,17 +180,18 @@ def move_mouse(args):
             move = PID(args, mouse_vector)
             win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(move[0]), int(move[1] / 3))
             last_mv = last - destination + mouse_vector
-            if not auto_fire or time.time()-time_fire <= 0.1: return
-            time_fire = time.time()
+            if not auto_fire or time.time()-time_fire <= 0.125: return  # 125ms
             # norm <= width/2  # higher divisor increases precision but limits fire rate
             # move[0]*last_mv[0] >= 0  # ensures tracking
             if ( shift_pressed and not right_lock and mouse2_pressed and not mouse1_pressed  # scope fire
             and norm <= width*2/3 and move[0]*last_mv[0] >= 0 ):
                 win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
+                time_fire = time.time()
                 win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
             elif ( ((shift_pressed and not mouse2_pressed) or (right_lock and mouse2_pressed and not mouse1_pressed))  # hip fire
             and norm <= width*3/4 and move[0]*last_mv[0] >= 0 ):
                 win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
+                time_fire = time.time()
                 win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
             return
         # if destination not in region
