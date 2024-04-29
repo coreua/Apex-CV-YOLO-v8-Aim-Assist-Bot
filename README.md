@@ -22,7 +22,7 @@ Features:
 
 Requirements:
 
-* [x] NVIDIA RTX Series GPU
+* [x] NVIDIA **Turing** / **Ampere** / **Ada_Lovelace** GPU
 
 ## Benchmarks
 
@@ -82,14 +82,14 @@ Requirements:
 
     | CUDA   | cuDNN | TensorRT | PyTorch |
     | :----: | :---: | :------: | :-----: |
-    | 11.8.0 | 8.6.0 | 8.5.3.1  | 2.0.1   |
+    | 12.1.0 | 8.9.0 | 8.6.1.6  | 2.1.2   |
 
 
 - Extract `Apex-CV-YOLO-v8-Aim-Assist-Bot-main.zip` to **C:\TEMP\Ape-xCV**
 
 
 - Install `Visual Studio 2019 Build Tools`.
-    - Download from: [`Microsoft website`](https://aka.ms/vs/16/release/vs_buildtools.exe).
+    - Download from: [`Onedrive`](https://1drv.ms/u/s!Ap42eSVvSYEggSzWcPLIUR0X81Uc) or [`Microsoft website`](https://visualstudio.microsoft.com/vs/older-downloads/).
     - On `Individual components` tab:
         - ✅ MSVC v142 - VS 2019 C++ x64/x86 build tools (Latest)
         - ✅ C++ CMake tools for Windows
@@ -97,20 +97,17 @@ Requirements:
     - ➡️ Install
 
 
-- Install `CUDA 11.8.0` from: [`NVIDIA website`](https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda_11.8.0_522.06_windows.exe).
-    - The minimum Visual Studio components were installed in previous step.
-        - ✅ I understand, and wish to continue the installation regardless.
+- Install `CUDA 12.1.0` from: [`NVIDIA website`](https://developer.nvidia.com/cuda-12-1-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_local).
+    - ✅ I understand, and wish to continue the installation regardless.
 
 
-- Install `cuDNN 8.6.0`.
-    - Download from: [`OneDrive`](https://1drv.ms/u/s!Ap42eSVvSYEggSTk1AM8objdDIbd).
-    - OR
+- Install `cuDNN 8.9.0`.
     - Register for the [`NVIDIA developer program`](https://developer.nvidia.com/login).
         - Go to the cuDNN download site:[`cuDNN download archive`](https://developer.nvidia.com/rdp/cudnn-archive).
-        - Click `Download cuDNN v8.6.0 (October 3rd, 2022), for CUDA 11.x`.
+        - Click `Download cuDNN v8.9.0 (April 11th, 2023), for CUDA 12.x`.
         - Download `Local Installer for Windows (Zip)`.
-    - Unzip `cudnn-windows-x86_64-8.6.0.163_cuda11-archive.zip`.
-    - Copy all three folders (`bin`,`include`,`lib`) and paste <_overwrite_> them into `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8`
+    - Unzip `cudnn-windows-x86_64-8.9.0.131_cuda12-archive.zip`.
+    - Copy all three folders (`bin`,`include`,`lib`) and paste <_overwrite_> them into `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.1`
 
 
 - Install `Python 3.10.0 (64-bit)` from: [`Python website`](https://www.python.org/ftp/python/3.10.0/python-3.10.0-amd64.exe).
@@ -120,27 +117,11 @@ Requirements:
         - `🔰 Disable path length limit`
 
 
-- Install `TensorRT`.
-    - Go to the TensorRT download site: [NVIDIA TensorRT 8.x Download](https://developer.nvidia.com/nvidia-tensorrt-8x-download).
-    - Download `TensorRT 8.5 GA Update 2 for Windows 10 and CUDA 11.0, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7 and 11.8 ZIP Package` from: [NVIDIA website](https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/secure/8.5.3/zip/TensorRT-8.5.3.1.Windows10.x86_64.cuda-11.8.cudnn8.6.zip).
-    - Extract `TensorRT-8.5.3.1.Windows10.x86_64.cuda-11.8.cudnn8.6.zip` to **C:\TEMP**
-    - Press **_[Win+R]_** and enter **cmd** to open a _Command Prompt_. Then input:
-    ```shell
-    cd /D C:\TEMP\Ape-xCV
-    addenv C:\TEMP\TensorRT-8.5.3.1\lib
-    ```
-    - TensorRT was added to PATH. Close that _Command Prompt_ and open a new one. Then input:
-    ```shell
-    cd /D C:\TEMP\TensorRT-8.5.3.1\python
-    pip install tensorrt-8.5.3.1-cp310-none-win_amd64.whl
-    ```
-
-
 - Install `python requirements`.
 ``` shell
 cd /D C:\TEMP\Ape-xCV
 pip install numpy==1.23.1
-pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
+pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements.txt
 ```
 
@@ -184,6 +165,22 @@ pip install -r requirements.txt
 
 ### 3.1 TensorRT (.engine)
 
+- Install `TensorRT`.
+    - Go to the TensorRT download site: [NVIDIA TensorRT 8.x Download](https://developer.nvidia.com/nvidia-tensorrt-8x-download).
+    - Download `TensorRT 8.6 GA for Windows 10 and CUDA 12.0 and 12.1 ZIP Package` from: [NVIDIA website](https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/secure/8.6.1/zip/TensorRT-8.6.1.6.Windows10.x86_64.cuda-12.0.zip).
+    - Extract `TensorRT-8.6.1.6.Windows10.x86_64.cuda-12.0.zip` to **C:\TEMP**
+    - Press **_[Win+R]_** and enter **cmd** to open a _Command Prompt_. Then input:
+    ```shell
+    cd /D C:\TEMP\Ape-xCV
+    addenv C:\TEMP\TensorRT-8.6.1.6\lib
+    ```
+    - TensorRT was added to PATH. Close that _Command Prompt_ and open a new one. Then input:
+    ```shell
+    cd /D C:\TEMP\TensorRT-8.6.1.6\python
+    pip install tensorrt-8.6.1-cp310-none-win_amd64.whl
+    ```
+
+
 - To export `best_8s.pt` to `best_8s.engine`:
     - Press **_[Win+R]_** and enter **cmd** to open a _Command Prompt_. Then input:
     ```shell
@@ -191,6 +188,8 @@ pip install -r requirements.txt
     cd /D C:\TEMP\Ape-xCV\MODEL
     yolo export model=best_8s.pt format=engine opset=12 workspace=7
     ```
+
+
 - Install Notepad++ from: [`Notepad++ website`](https://notepad-plus-plus.org/downloads/).
 - Open `C:\TEMP\Ape-xCV\args_.py` with Notepad++.
 ```shell
@@ -199,14 +198,16 @@ def arg_init(args):
     args.add_argument("--model", type=str,
                     default="/best_8s.pt", help="model path")
 ```
+
+
 - Do not change the identation! In --model change `best_8s.pt` to `best_8s.engine`
 - Save `args_.py`.
     - 🐵 Run `Ape-xCV.bat`.
 
 ### 3.2 TensorRT (.trt)
 
-- If `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\bin\zlibwapi.dll` is missing.
-    - Copy `C:\Program Files\NVIDIA Corporation\Nsight Systems 2022.4.2\host-windows-x64\zlib.dll` to **C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\bin** and then rename it to **zlibwapi.dll**
+- If `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.1\bin\zlibwapi.dll` is missing.
+    - Copy `C:\Program Files\NVIDIA Corporation\Nsight Systems 2023.1.2\host-windows-x64\zlib.dll` to **C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.1\bin** and then rename it to **zlibwapi.dll**
 
 
 - To export `best_8s.pt` to `best_8s.trt`:
@@ -218,12 +219,14 @@ def arg_init(args):
     ```
     - If RTX 20 Series (FP16):
     ```shell
-    C:\TEMP\TensorRT-8.5.3.1\bin\trtexec.exe --onnx=best_8s.onnx --saveEngine=best_8s.trt --buildOnly --workspace=7168 --fp16
+    C:\TEMP\TensorRT-8.6.1.6\bin\trtexec.exe --onnx=best_8s.onnx --saveEngine=best_8s.trt --buildOnly --workspace=7168 --fp16
     ```
     - If RTX 30 Series (FP32):
     ```shell
-    C:\TEMP\TensorRT-8.5.3.1\bin\trtexec.exe --onnx=best_8s.onnx --saveEngine=best_8s.trt --buildOnly --workspace=7168
+    C:\TEMP\TensorRT-8.6.1.6\bin\trtexec.exe --onnx=best_8s.onnx --saveEngine=best_8s.trt --buildOnly --workspace=7168
     ```
+
+
 - Open `C:\TEMP\Ape-xCV\args_.py` with Notepad++.
 ```shell
 def arg_init(args):
@@ -231,6 +234,8 @@ def arg_init(args):
     args.add_argument("--model", type=str,
                     default="/best_8s.pt", help="model path")
 ```
+
+
 - In --model change `best_8s.pt` to `best_8s.trt`
 - Save `args_.py`.
     - 🐵 Run `Ape-xCV.bat`.
@@ -259,6 +264,8 @@ def arg_init(args):
     ```shell
     python export.py -o C:/TEMP/Ape-xCV/MODEL/best_8s.onnx -e C:/TEMP/Ape-xCV/MODEL/best_8s_e2e.trt -p fp32 -w 7 --end2end --conf_thres 0.6 --iou_thres 0.8 --v8
     ```
+
+
 - Open `C:\TEMP\Ape-xCV\args_.py` with Notepad++.
 ```shell
 def arg_init(args):
@@ -268,6 +275,8 @@ def arg_init(args):
     args.add_argument("--end2end", type=bool,
                     default=False, help="use TensorRT efficientNMSPlugin")
 ```
+
+
 - In --model change `best_8s.pt` to `best_8s_e2e.trt`
 - In --end2end change `False` to `True`
 - Save `args_.py`.
@@ -301,6 +310,8 @@ def arg_init(args):
     args.add_argument("--draw_boxes", type=bool,
                     default=False, help="outline detected target, borderless window")
 ```
+
+
 - Until you understand how NMS works, do not change `--iou`.
 - `--crop_size` "the portion to detect from the screen". Will be scaled down to 640x640 for input. The default **640/screen_height** is the best value.
 - `--draw_boxes` "outline detected target, borderless window". Set to `True` in the Firing Range only.
@@ -320,6 +331,8 @@ def arg_init(args):
 cd /D C:\TEMP\Ape-xCV
 python train8s40.py
 ```
+
+
 - This will **train** your YOLO v**8 s**mall model for **40** epochs with images and labels from `C:\TEMP\Ape-xCV\datasets\apex` and save it to `C:\TEMP\Ape-xCV\runs\detect\train\weights\best.pt`.
 
 
