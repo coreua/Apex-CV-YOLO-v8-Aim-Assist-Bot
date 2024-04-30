@@ -207,6 +207,7 @@ def move_mouse(args):
 def mouse_redirection(args, boxes):
     global screen_size, screen_center, destination, last, width, pos
     if boxes.shape[0] == 0:
+        width = -1
         last = destination
         destination = np.array([-1, -1])
         return
