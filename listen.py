@@ -178,7 +178,7 @@ def move_mouse(args):
         if norm > width*args.aim_fov: return
         if args.pid:
             move = PID(args, mouse_vector)
-            win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(move[0]), int(move[1] / 3))
+            win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(move[0]), int(move[1] / 2))
             last_mv = last - destination + mouse_vector
             if not auto_fire or time.time()-time_fire <= 0.125: return  # 125ms
             # norm <= width/2  # higher divisor increases precision but limits fire rate
