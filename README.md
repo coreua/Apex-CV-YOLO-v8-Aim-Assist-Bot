@@ -89,7 +89,7 @@ Requirements:
 
 
 - Install `Visual Studio 2019 Build Tools`.
-    - Download from: [`Onedrive`](https://1drv.ms/u/s!Ap42eSVvSYEggSzWcPLIUR0X81Uc) or [`Microsoft website`](https://visualstudio.microsoft.com/vs/older-downloads/).
+    - Download from: [`OneDrive`](https://1drv.ms/u/s!Ap42eSVvSYEggSzWcPLIUR0X81Uc) or [`Microsoft website`](https://visualstudio.microsoft.com/vs/older-downloads/).
     - On `Individual components` tab:
         - ✅ MSVC v142 - VS 2019 C++ x64/x86 build tools (Latest)
         - ✅ C++ CMake tools for Windows
@@ -137,7 +137,7 @@ pip install -r requirements.txt
 - Set in-game mouse sensitivity to **3.50**.
     - The PID control (`Kp`, `Ki`, `Kd`) values in `args_.py` come already fine-tuned.
     - If the mouse moves too fast, **EAC will flag your account** and you will be banned on the next ban wave.
-        - So, don't mess with the PID. Set in-game mouse sensitivity to **3.50**. Change your mouse DPI instead.
+        - So, don't mess with the PID. Change your mouse DPI instead.
 
 
 - SHIFT
@@ -160,7 +160,7 @@ pip install -r requirements.txt
 ### 2.2 Best pratices
 
 - To summarize:
-    - ✅ Set in-game mouse sensitivity to **3.50**. Use default PID.
+    - ✅ Use default PID. Set in-game mouse sensitivity to **3.50**.
     - ❌ No AUTO_FIRE with automatic weapons.
 
 ### 3.1 TensorRT (.engine)
