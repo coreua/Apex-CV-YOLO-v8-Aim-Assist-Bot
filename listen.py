@@ -175,6 +175,8 @@ def move_mouse(args):
         else:
             mouse_vector = (destination - pos) / scale
         norm = np.linalg.norm(mouse_vector)
+        # if destination not in region
+        if norm <= args.aim_deadzone or (destination[0] == screen_center[0] and destination[1] == screen_center[1]): return
         if norm > width*args.aim_fov: return
         if args.pid:
             move = PID(args, mouse_vector)
@@ -194,8 +196,6 @@ def move_mouse(args):
                 time_fire = time.time()
                 win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
             return
-        # if destination not in region
-        if norm <= 2 or (destination[0] == screen_center[0] and destination[1] == screen_center[1]): return
         if norm <= width*4/3:
             win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(mouse_vector[0] / 3), int(mouse_vector[1] / 3))
             return
