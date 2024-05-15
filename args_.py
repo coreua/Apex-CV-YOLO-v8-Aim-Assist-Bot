@@ -10,7 +10,7 @@ def arg_init(args):
     args.add_argument("--model_dir", type=str,
                     default=dirpath + "/model", help="model dir")
     args.add_argument("--model", type=str,
-                    default="/best_8s.pt", help="model path")
+                    default="/best_8n.pt", help="model path")
     args.add_argument("--end2end", type=bool,
                     default=False, help="use TensorRT efficientNMSPlugin")
     args.add_argument("--classes", type=int,
